@@ -1,0 +1,170 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 230px;
+  background-color: #1e466d;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.sidebar h2 {
+  font-size: 16px;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.nav-menu {
+  flex-grow: 1;
+}
+
+.bottom {
+  margin-top: auto;
+}
+
+.sidebar h2 {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+}
+
+.sidebar ul li {
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.sidebar ul ul {
+  padding-left: 15px;
+}
+
+.sidebar .active {
+  background-color: #ffffff33;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.logout {
+  background: none;
+  color: white;
+  border: 1px solid white;
+  padding: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+/* Dropdown menu */
+.dropdown-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+#user-submenu li {
+  margin: 6px 0;
+  padding-left: 15px;
+}
+
+/* Main content */
+.main {
+  flex-grow: 1;
+  padding: 30px;
+  background-color: #f9f9f9;
+}
+
+.center-title {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+/* Top controls */
+.top-controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.btn.red {
+  background-color: #dc4c4c;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.search {
+  padding: 10px;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+  background: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+  background-color: #f0f0f0;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.status.active {
+  color: green;
+  font-weight: bold;
+}
+
+.icons {
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  margin-top: 15px;
+}
+
+.pagination span {
+  padding: 5px 10px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination .active-page {
+  background-color: #2c3e50;
+  color: white;
+}
