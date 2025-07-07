@@ -11,15 +11,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 include 'db.php';
 
-$id = $_POST['id'] ?? '';
 $studentId = $_POST['studentId'] ?? '';
 $name = $_POST['name'] ?? '';
 $email = $_POST['email'] ?? '';
 $course = $_POST['course'] ?? '';
 $semester = isset($_POST['semester']) ? intval($_POST['semester']) : 0;
 
-if (!$id || !$studentId || !$name || !$email || !$course || !$semester) {
-  echo json_encode(["error" => "Missing fields."]);
+if (!$studentId || !$name || !$email || !$course || !$semester) {
+  echo json_encode(["error" => "Missing required fields"]);
   exit;
 }
 
@@ -39,17 +38,13 @@ if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
   }
 }
 
-if ($imagePath) {
-  $stmt = $conn->prepare("UPDATE students SET studentId=?, name=?, email=?, course=?, semester=?, imagePath=? WHERE id=?");
-  $stmt->bind_param("ssssssi", $studentId, $name, $email, $course, $semester, $imagePath, $id);
-} else {
-  $stmt = $conn->prepare("UPDATE students SET studentId=?, name=?, email=?, course=?, semester=? WHERE id=?");
-  $stmt->bind_param("sssssi", $studentId, $name, $email, $course, $semester, $id);
-}
+$sql = "INSERT INTO students (studentId, name, email, course, semester, imagePath) VALUES (?, ?, ?, ?, ?, ?)";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("ssssis", $studentId, $name, $email, $course, $semester, $imagePath);
 
 if ($stmt->execute()) {
-  echo json_encode(["message" => "Student updated successfully."]);
+  echo json_encode(["message" => "Student added successfully."]);
 } else {
-  echo json_encode(["error" => "Update failed."]);
+  echo json_encode(["error" => "Failed to add student."]);
 }
 ?>

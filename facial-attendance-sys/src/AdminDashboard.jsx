@@ -14,6 +14,7 @@ const AdminDashboard = () => {
     email: "",
     course: "",
     semester: "",
+    image: null,
   });
 
   useEffect(() => {
@@ -35,6 +36,10 @@ const AdminDashboard = () => {
     setNewStudent({ ...newStudent, [name]: value });
   };
 
+  const handleFileChange = (e) => {
+    setNewStudent({ ...newStudent, image: e.target.files[0] });
+  };
+
   const handleAddStudent = () => {
     const formData = new FormData();
     formData.append("studentId", newStudent.studentId);
@@ -42,6 +47,9 @@ const AdminDashboard = () => {
     formData.append("email", newStudent.email);
     formData.append("course", newStudent.course);
     formData.append("semester", newStudent.semester);
+    if (newStudent.image) {
+      formData.append("image", newStudent.image);
+    }
 
     fetch("http://localhost/facial-attendance-backend/add_student.php", {
       method: "POST",
@@ -57,6 +65,7 @@ const AdminDashboard = () => {
           email: "",
           course: "",
           semester: "",
+          image: null,
         });
         fetchStudents();
       });
@@ -67,7 +76,7 @@ const AdminDashboard = () => {
   };
 
   const handleEditStudent = (student) => {
-    setEditStudent({ ...student });
+    setEditStudent({ ...student, newImage: null });
   };
 
   const handleDeleteStudent = (id) => {
@@ -91,6 +100,9 @@ const AdminDashboard = () => {
     formData.append("email", editStudent.email);
     formData.append("course", editStudent.course);
     formData.append("semester", editStudent.semester);
+    if (editStudent.newImage) {
+      formData.append("image", editStudent.newImage);
+    }
 
     fetch("http://localhost/facial-attendance-backend/edit_student.php", {
       method: "POST",
@@ -107,12 +119,7 @@ const AdminDashboard = () => {
   return (
     <div className="container">
       <div className="sidebar">
-        <h2>
-          Facial Recognition
-          <br />
-          Attendance System
-        </h2>
-
+        <h2>Facial Recognition<br />Attendance System</h2>
         <nav className="nav-menu">
           <ul>
             <li className="dropdown">
@@ -127,11 +134,8 @@ const AdminDashboard = () => {
             <li>Course Management</li>
           </ul>
         </nav>
-
         <div className="bottom">
-          <button className="logout" onClick={() => (window.location.href = "/")}>
-            Log Out
-          </button>
+          <button className="logout" onClick={() => (window.location.href = "/")}>Log Out</button>
         </div>
       </div>
 
@@ -152,6 +156,7 @@ const AdminDashboard = () => {
             <input type="email" name="email" placeholder="Email" value={newStudent.email} onChange={handleInputChange} />
             <input type="text" name="course" placeholder="Course" value={newStudent.course} onChange={handleInputChange} />
             <input type="number" name="semester" placeholder="Semester" value={newStudent.semester} onChange={handleInputChange} />
+            <input type="file" accept="image/jpeg,image/jpg,image/png" onChange={handleFileChange} />
             <div>
               <button className="btn red" onClick={handleAddStudent}>Submit</button>
               <button className="btn" onClick={() => setShowForm(false)}>Cancel</button>
@@ -167,6 +172,7 @@ const AdminDashboard = () => {
             <input type="email" value={editStudent.email} onChange={(e) => setEditStudent({ ...editStudent, email: e.target.value })} />
             <input type="text" value={editStudent.course} onChange={(e) => setEditStudent({ ...editStudent, course: e.target.value })} />
             <input type="number" value={editStudent.semester} onChange={(e) => setEditStudent({ ...editStudent, semester: e.target.value })} />
+            <input type="file" accept="image/jpeg,image/jpg,image/png" onChange={(e) => setEditStudent({ ...editStudent, newImage: e.target.files[0] })} />
             <div>
               <button className="btn red" onClick={submitEditStudent}>Update</button>
               <button className="btn" onClick={() => setEditStudent(null)}>Cancel</button>
@@ -207,25 +213,29 @@ const AdminDashboard = () => {
           </tbody>
         </table>
 
-        <div className="pagination">
-          <span className="active-page">1</span>
-          <span>2</span>
-          <span>3</span>
-          <span>4</span>
-          <span>5</span>
-          <span>…</span>
-          <span>10</span>
-        </div>
-
         {viewStudent && (
           <div className="modal-overlay">
             <div className="modal">
               <h2>Student Details</h2>
-              <p><strong>ID:</strong> {viewStudent.studentId}</p>
-              <p><strong>Name:</strong> {viewStudent.name}</p>
-              <p><strong>Email:</strong> {viewStudent.email}</p>
-              <p><strong>Course:</strong> {viewStudent.course}</p>
-              <p><strong>Semester:</strong> {viewStudent.semester}</p>
+
+              {viewStudent.imagePath && (
+                <div className="student-image">
+                  <img
+                    src={`http://localhost/facial-attendance-backend/${viewStudent.imagePath}`}
+                    alt="Student"
+                    style={{ width: "150px" }}
+                  />
+                </div>
+              )}
+
+              <div className="student-details">
+                <p><strong>ID:</strong> {viewStudent.studentId}</p>
+                <p><strong>Name:</strong> {viewStudent.name}</p>
+                <p><strong>Email:</strong> {viewStudent.email}</p>
+                <p><strong>Course:</strong> {viewStudent.course}</p>
+                <p><strong>Semester:</strong> {viewStudent.semester}</p>
+              </div>
+
               <button className="btn" onClick={() => setViewStudent(null)}>Close</button>
             </div>
           </div>

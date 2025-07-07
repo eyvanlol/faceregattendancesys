@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
 include 'db.php';
 
-$sql = "SELECT id, studentId, name, email, course, semester FROM students";
+$sql = "SELECT id, studentId, name, email, course, semester, imagePath FROM students";
 $result = $conn->query($sql);
 
 $students = [];
