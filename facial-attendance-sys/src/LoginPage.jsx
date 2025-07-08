@@ -11,9 +11,16 @@ const LoginPage = () => {
   const handleLogin = (e) => {
     e.preventDefault();
 
+    // Admin login
     if (email === '123abc@admin.edu' && password === 'admin123') {
       navigate('/admin');
-    } else {
+    }
+    // Lecturer login
+    else if (email === 'lecturer@lect.edu' && password === 'lect123') {
+      navigate('/lecturer');
+    }
+    // Invalid login
+    else {
       setErrorMessage('Invalid email or password.');
     }
   };
