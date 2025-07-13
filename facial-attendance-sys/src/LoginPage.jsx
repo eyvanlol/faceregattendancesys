@@ -19,6 +19,10 @@ const LoginPage = () => {
     else if (email === 'lecturer@lect.edu' && password === 'lect123') {
       navigate('/lecturer');
     }
+    // Student Login
+    else if (email === 'student123@student.edu' && password === 'stud123') {
+      navigate('/student')
+    }
     // Invalid login
     else {
       setErrorMessage('Invalid email or password.');

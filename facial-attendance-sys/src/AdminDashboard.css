@@ -1,6 +1,8 @@
+/* ========== LAYOUT STYLES ========== */
 .container {
   display: flex;
   min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .sidebar {
@@ -10,14 +12,33 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
+.main {
+  flex-grow: 1;
+  padding: 30px;
+  background-color: #f9f9f9;
+  overflow-y: auto;
+}
+
+/* ========== TYPOGRAPHY ========== */
 .sidebar h2 {
   font-size: 16px;
   margin-bottom: 20px;
   line-height: 1.4;
+  font-weight: 600;
 }
 
+.center-title {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 28px;
+  color: #333;
+  font-weight: 600;
+}
+
+/* ========== NAVIGATION ========== */
 .nav-menu {
   flex-grow: 1;
 }
@@ -30,6 +51,13 @@
 .sidebar ul li {
   margin: 10px 0;
   cursor: pointer;
+  padding: 8px 10px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.sidebar ul li:hover {
+  background-color: #2a5a8a;
 }
 
 .sidebar ul ul {
@@ -38,8 +66,40 @@
 
 .sidebar .active {
   background-color: #ffffff33;
-  padding: 5px;
-  border-radius: 5px;
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.dropdown-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ========== BUTTONS & CONTROLS ========== */
+.btn {
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  border: none;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn.red {
+  background-color: #dc4c4c;
+  color: white;
+}
+
+.btn.red:hover {
+  background-color: #c14343;
 }
 
 .logout {
@@ -50,30 +110,11 @@
   cursor: pointer;
   margin-top: 20px;
   border-radius: 4px;
+  transition: all 0.2s;
 }
 
-.dropdown-toggle {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-}
-
-.hidden {
-  display: none;
-}
-
-.main {
-  flex-grow: 1;
-  padding: 30px;
-  background-color: #f9f9f9;
-}
-
-.center-title {
-  text-align: center;
-  margin-bottom: 25px;
-  font-size: 28px;
-  color: #333;
+.logout:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .top-controls {
@@ -81,52 +122,343 @@
   justify-content: center;
   gap: 15px;
   margin-bottom: 25px;
-}
-
-.btn.red {
-  background-color: #dc4c4c;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  cursor: pointer;
-  border-radius: 4px;
+  align-items: center;
 }
 
 .search {
-  padding: 10px;
-  width: 200px;
+  padding: 10px 15px;
+  width: 250px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  font-size: 14px;
 }
 
+/* ========== TABLES ========== */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   background: white;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 thead {
-  background-color: #f0f0f0;
+  background-color: #1e466d;
+  color: white;
 }
 
-th,
-td {
-  padding: 12px;
+th, td {
+  padding: 12px 15px;
   text-align: left;
   border-bottom: 1px solid #eee;
 }
 
+th {
+  font-weight: 600;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
 .status.active {
-  color: green;
+  color: #28a745;
   font-weight: bold;
 }
 
 .icons span {
-  margin-right: 8px;
+  margin-right: 10px;
   cursor: pointer;
   font-size: 18px;
+  transition: transform 0.2s;
+}
+
+.icons span:hover {
+  transform: scale(1.1);
+}
+
+/* ========== FORMS ========== */
+.student-form {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+}
+
+.student-form h3 {
+  margin-top: 0;
+  color: #333;
+  font-size: 18px;
+}
+
+.student-form input,
+.student-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.student-form input[type="file"] {
+  margin-bottom: 20px;
+}
+
+.student-form .btn {
+  margin-right: 10px;
+}
+
+/* ========== MODALS ========== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal img {
+  border-radius: 8px;
+  max-width: 100%;
+  height: auto;
+}
+
+.modal h2 {
+  margin-top: 0;
+  color: #1e466d;
+}
+
+.modal .student-image {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.modal .student-details {
+  text-align: left;
+  padding: 0 10px;
+}
+
+.modal .student-details p {
+  margin: 8px 0;
+  font-size: 15px;
+}
+
+.modal .student-details strong {
+  color: #333;
+}
+
+/* ========== TIMETABLE SPECIFIC STYLES ========== */
+.timetable-container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.class-selector {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.class-selector label {
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+.class-selector select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.timetable-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  align-items: center;
+}
+
+.timetable-form select,
+.timetable-form input {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 150px;
+  flex: 1;
+}
+
+.timetable-form .btn {
+  background-color: #1e466d;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.timetable-form .btn:hover {
+  background-color: #14334f;
+}
+
+.timetable-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  table-layout: fixed;
+}
+
+.timetable-table th {
+  background-color: #1e466d;
+  color: white;
+  padding: 12px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.timetable-table td {
+  padding: 0;
+  border: 1px solid #e0e0e0;
+  height: 80px;
+  vertical-align: top;
+  position: relative;
+}
+
+.timetable-cell {
+  height: 100%;
+  width: 100%;
+}
+
+.timetable-cell.occupied {
+  background-color: #e8f4fd;
+}
+
+.entry {
+  padding: 8px;
+  height: 70%;
+  background-color: #e1f0ff;
+  border-left: 3px solid #1e466d;
+}
+
+.entry-continued {
+  height: 100%;
+  background-color: #e1f0ff;
+}
+
+.entry strong {
+  display: block;
+  color: #1e466d;
+  margin-bottom: 3px;
+}
+
+.entry div {
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+
+.timetable-actions {
+  display: flex;
+  gap: 5px;
+  margin-top: 5px;
+  justify-content: center;
+}
+
+.timetable-actions button {
+  padding: 3px 8px;
+  font-size: 12px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.timetable-actions button:hover {
+  opacity: 0.9;
+}
+
+.timetable-actions .edit-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.timetable-actions .delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+
+
+/* ========== RESPONSIVE ADJUSTMENTS ========== */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    padding: 15px;
+  }
+  
+  .main {
+    padding: 20px;
+  }
+  
+  .timetable-form {
+    flex-direction: column;
+  }
+  
+  .timetable-form select,
+  .timetable-form input {
+    width: 100%;
+  }
+  
+  table {
+    font-size: 14px;
+  }
+  
+  th, td {
+    padding: 8px 10px;
+  }
+}
+
+/* ========== ANIMATIONS & TRANSITIONS ========== */
+.btn, .logout, .icons span, .timetable-actions button {
+  transition: all 0.2s ease;
+}
+
+/* ========== UTILITY CLASSES ========== */
+.hidden {
+  display: none;
+}
+
+.active-page {
+  background-color: #2c3e50;
+  color: white;
 }
 
 .pagination {
@@ -141,52 +473,4 @@ td {
   background: #e0e0e0;
   border-radius: 4px;
   cursor: pointer;
-}
-
-.pagination .active-page {
-  background-color: #2c3e50;
-  color: white;
-}
-
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.modal {
-  background: white;
-  padding: 25px;
-  border-radius: 10px;
-  width: 350px;
-  max-width: 90%;
-  text-align: center;
-}
-
-.modal img {
-  border-radius: 8px;
-}
-
-.modal h2 {
-  margin-bottom: 10px;
-}
-
-.modal .student-image {
-  margin-bottom: 15px;
-}
-
-.modal .student-details {
-  text-align: left;
-  padding: 0 10px;
-}
-
-.modal .student-details p {
-  margin: 6px 0;
 }

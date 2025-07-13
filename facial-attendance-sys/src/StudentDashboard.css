@@ -1,0 +1,357 @@
+/* ========== LAYOUT ========== */
+.container {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.sidebar {
+  width: 230px;
+  background-color: #1e466d;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.main {
+  flex-grow: 1;
+  padding: 30px;
+  background-color: #f9f9f9;
+  overflow-y: auto;
+}
+
+/* ========== SIDEBAR ========== */
+.sidebar h2 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.sidebar button {
+  background: none;
+  color: white;
+  border: none;
+  font-size: 16px;
+  text-align: left;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sidebar button:hover {
+  background-color: #2a5a8a;
+}
+
+.sidebar .active {
+  background-color: #ffffff33;
+  font-weight: 600;
+}
+
+.logout {
+  background: none;
+  color: white;
+  border: 1px solid white;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: auto;
+  transition: all 0.2s;
+}
+
+.logout:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ========== MAIN CONTENT ========== */
+.main h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 28px;
+  color: #333;
+  font-weight: 600;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.filters select {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  min-width: 160px;
+  background-color: white;
+}
+
+/* ========== TABLE ========== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+thead {
+  background-color: #1e466d;
+  color: white;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  font-weight: 600;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+/* ========== STATUS COLORS ========== */
+.present {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.absent {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+.excused {
+  color: #fd7e14;
+  font-weight: 600;
+}
+
+.not-taken {
+  color: #6c757d;
+  font-weight: 600;
+}
+
+/* ========== WARNING ========== */
+.warning {
+  background-color: #dc3545;
+  color: white;
+  padding: 12px 20px;
+  font-weight: 500;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 15px;
+}
+
+/* ========== REPORT BUTTON ========== */
+.report-btn {
+  padding: 10px 18px;
+  font-size: 14px;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  float: right;
+  transition: background 0.2s;
+}
+
+.report-btn:hover {
+  background-color: #d6d6d6;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .main {
+    padding: 20px;
+  }
+
+  .filters {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filters select {
+    width: 100%;
+  }
+
+  table {
+    font-size: 14px;
+  }
+
+  th, td {
+    padding: 10px;
+  }
+
+  .report-btn {
+    width: 100%;
+    float: none;
+  }
+}
+
+/* ========== TRANSITIONS ========== */
+button, .logout {
+  transition: all 0.2s ease;
+}
+
+/* ========== TIMETABLE VIEW ========== */
+.timetable-view {
+  margin-top: 20px;
+}
+
+.timetable-view h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.timetable-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 2px;
+  margin-top: 20px;
+  table-layout: fixed;
+}
+
+.timetable-table th {
+  background-color: #3a7ca5;
+  color: white;
+  padding: 12px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.timetable-table td {
+  padding: 0;
+  border: 1px solid #e0e0e0;
+  height: 80px;
+  vertical-align: top;
+  position: relative;
+}
+
+.timetable-cell {
+  height: 100%;
+  width: 100%;
+}
+
+.entry {
+  height: 100%;
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  background-color: #e1f0ff;
+  border-left: 3px solid #3a7ca5;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
+.entry strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 13px;
+}
+
+/* Course-specific colors */
+.course-DCS2106 { border-left-color: #1976d2; background-color: #e3f2fd; }
+.course-DCS2113 { border-left-color: #388e3c; background-color: #e8f5e9; }
+.course-DCS2112 { border-left-color: #ffa000; background-color: #fff3e0; }
+.course-DCS2103 { border-left-color: #8e24aa; background-color: #f3e5f5; }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .timetable-table th,
+  .timetable-table td {
+    height: 60px;
+    font-size: 12px;
+  }
+  
+  .entry {
+    padding: 4px;
+    font-size: 11px;
+  }
+  
+  .entry strong {
+    font-size: 12px;
+  }
+}
+
+.timetable-cell.occupied {
+  background-color: #e6f3ff; /* Light blue to highlight occupied slots */
+  border: 2px solid #90caf9; /* Optional: adds a soft border for visibility */
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Class selector styles */
+.class-selector {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.class-selector label {
+  font-weight: 500;
+  color: #333;
+}
+
+.class-selector select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  min-width: 150px;
+}
+
+/* Enhanced occupied slot styling */
+.timetable-cell.occupied {
+  background-color: #e6f3ff;
+  border: 2px solid #90caf9;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+/* Make sure entries fill the cell */
+.entry {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Loading spinner */
+.loading {
+  text-align: center;
+  padding: 20px;
+  font-style: italic;
+  color: #666;
+}
